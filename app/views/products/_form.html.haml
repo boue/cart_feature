@@ -1,4 +1,5 @@
-= form_for @product do |f|
+/ multipart: true is necessary since we are uploading a file in our form 
+= form_for @product, multipart: true do |f|
   - if @product.errors.any?
     #error_explanation
       %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
@@ -14,6 +15,8 @@
     = f.text_field :price
   .field
     = f.label :image
-    = f.text_field :image
+    / helper method to create the upload file icon :image is the resource 
+    = f.file_field :image
+    %br/
   .actions
     = f.submit 'Save'
